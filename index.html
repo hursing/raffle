@@ -18,49 +18,43 @@
       }
       body {
         text-align: center;
-        background: url("./bg.jpeg") no-repeat;
+        background: url("./bg.png") no-repeat;
         overflow: hidden;
         background-size: 100% 100%;
-        color: white;
+        font-weight: bold;
       }
       #container {
         min-width: 1000px;
         min-height: 700px;
       }
-      #title {
-        font-size: 60px;
-      }
-      #count {
-        font-size: 40px;
-        margin-top: 20px;
-      }
       #disc {
         font-size: 40px;
-        margin-top: 30px;
+        margin-top: 280px;
+        color: #D40000;
       }
       #image {
         margin-top: 30px;
-        max-height: 400px;
+        max-height: 280px;
+        border: 1px solid #E23540FF;
+        border-radius: 20px;
       }
       #list {
-        margin: 30px auto;
+        margin: 0 auto;
         max-width: 800px;
-        
+        color: #88241FFF;
       }
       #list span {
         display: inline-block;
         width: 160px;
-        font-size: 30px;
-        margin: 30px 0;
+        font-size: 36px;
+        margin-top: 8px;
       }
     </style>
   </head>
 
   <body>
     <div id="container">
-      <div id="title">惠信科技2019年会</div>
       <div id="disc">奖品描述</div>
-      <div id="count">数量</div>
       <img id="image" />
       <div id="list"></div>
     </div>
@@ -72,7 +66,6 @@
       var state = ""
       
       var disc = document.getElementById('disc')
-      var count = document.getElementById('count')
       var image = document.getElementById('image')
       var list = document.getElementById('list')
 
@@ -103,8 +96,6 @@
         disc.innerHTML = data.disc
         image.src = data.image
         image.style.display = 'inline'
-        count.innerHTML = data.count + '人'
-        count.style.display = 'block'
         list.style.display = 'none'
         while (list.hasChildNodes()) {
           list.removeChild(list.firstChild)
@@ -114,7 +105,6 @@
       function showBlink(data) {
         disc.innerHTML = data.disc
         image.style.display = 'none'
-        count.style.display = 'none'
         list.style.display = 'block'
         var spans = []
         for (var i = 0; i < data.count; ++i) {
@@ -140,7 +130,6 @@
 
       function showList(data) {
         disc.innerHTML = data.disc
-        count.style.display = 'none'
         image.style.display = 'none'
         list.style.display = 'block'
         while (list.hasChildNodes()) {
