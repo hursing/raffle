@@ -5,6 +5,7 @@
     <script>
       var win = nw.Window.get()
       win.resizeTo(1024, 768)
+      win.moveTo(0, 0)
     </script>
     <style type="text/css">
       * {
@@ -212,6 +213,9 @@
         } else if (e.keyCode == 32) {
           // 空格
           drawPrize()
+        } else if (e.keyCode == 70) {
+          // f
+          win.toggleFullscreen()
         }
       })
       
