@@ -2,7 +2,7 @@
 
 年会抽奖程序。
 
-用node-webkit加原生JavaScript实现的，所以可以跨平台。
+用node-webkit加原生JavaScript实现的，所以可以跨平台。也就200多行代码而已。
 
 Windows的启动方法：到 https://nwjs.io/ 下载node-webkit，解压出来，把本目录拖动到nwjs.exe上。
 
@@ -12,6 +12,7 @@ Windows的启动方法：到 https://nwjs.io/ 下载node-webkit，解压出来�
 cd /path/to/your/app
 /path/to/nw .
 ```
+
 `/path/to/nw` is the binary file of NW.js. On Windows, it’s `nw.exe`; On Linux, it’s `nw`; On Mac, it’s `nwjs.app/Contents/MacOS/nwjs`.
 
 ## 按键
@@ -19,7 +20,7 @@ cd /path/to/your/app
 - `f`：切换全屏
 - `4`：下一步
 - `8`：重新加载配置文件。主要用于临场增加奖项
-- 空格：抽奖。即名单滚动时停止
+- 空格：立刻停止名单滚动。即确定中奖人员。
 - `1`：上一步，用来看看上个奖项的情况
 
 ## 核心文件说明

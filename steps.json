@@ -1,6 +1,6 @@
 [{
-    "disc": "五等奖 iPhone XS",
-    "count": 20,
+    "disc": "五等奖 iPhone XS（已内定）",
+    "count": 2,
     "image": "./iphonex.jpg",
     "list": ["何柳琴", "李智聪"]
   },
@@ -10,8 +10,8 @@
     "image": "./swiper.png"
   }, 
   {
-    "disc": "四等奖 沃尔玛购物卡500元",
-    "count": 15,
+    "disc": "三等奖 沃尔玛购物卡5000元",
+    "count": 10,
     "image": "./walmart.png"
   }
 ]

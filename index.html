@@ -131,8 +131,8 @@
             for (var i = 0; i < data.count; ++i) {
               spans[i].innerHTML = names[i]
             }
+            window.requestAnimationFrame(doBlink)
           }
-          window.requestAnimationFrame(doBlink)
         }
 
         window.requestAnimationFrame(doBlink)
