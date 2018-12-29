@@ -2,7 +2,7 @@
 
 年会抽奖程序。
 
-用node-webkit加原生JavaScript实现的，所以可以跨平台。也就200多行代码而已。
+用node-webkit加原生JavaScript实现的，所以可以跨平台。也就200多行代码而已，2018年用这些框架写的人都弱爆了：Vue、React、Angular、Swing、Tkinter、Qt、WPF、WinForm。
 
 Windows的启动方法：到 https://nwjs.io/ 下载node-webkit，解压出来，把本目录拖动到nwjs.exe上。
 
