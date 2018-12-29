@@ -78,7 +78,7 @@
 
       function reloadConf(func) {
         fs.readFile('names.ini', 'utf8', function(err, data) {
-          names = data.split('\n')
+          names = data.split('\n').map(x => x.split(','))
         })
         fs.readFile('./steps.json', 'utf8', function(err, data) {
           steps = eval(data)
@@ -92,7 +92,7 @@
             alert(err)
           }
         })
-        fs.writeFile('./names.ini', names.join('\n'), function(err) {
+        fs.writeFile('./names.ini', names.map(x => x.join(',')).join('\n'), function(err) {
           if (err) {
             alert(err)
           }
@@ -129,7 +129,7 @@
               return 0.5 - Math.random()
             })
             for (var i = 0; i < data.count; ++i) {
-              spans[i].innerHTML = names[i]
+              spans[i].innerHTML = names[i][0]
             }
             window.requestAnimationFrame(doBlink)
           }
@@ -192,8 +192,14 @@
       function drawPrize() {
         if (state == "showBlink") {
           var data = steps[step]
+          names.sort(function (a, b) {
+            if (a[1] <= data.level && b[1] > data.level) {
+              return -1
+            }
+            return 0
+          })
           var luck = names.splice(0, data.count)
-          data.list = luck
+          data.list = luck.map(x => x[0])
           saveConf()
           nextStep()
         }

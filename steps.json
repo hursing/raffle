@@ -1,17 +1,20 @@
 [{
     "disc": "五等奖 iPhone XS（已内定）",
     "count": 2,
+    "level": 3,
     "image": "./iphonex.jpg",
     "list": ["何柳琴", "李智聪"]
   },
   {
     "disc": "四等奖 扫地机器人",
     "count": 15,
+    "level": 2,
     "image": "./swiper.png"
   }, 
   {
     "disc": "三等奖 沃尔玛购物卡5000元",
     "count": 10,
+    "level": 1,
     "image": "./walmart.png"
   }
 ]
