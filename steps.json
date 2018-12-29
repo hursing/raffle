@@ -1,0 +1,17 @@
+[{
+    "disc": "五等奖 iPhone XS",
+    "count": 20,
+    "image": "./iphonex.jpg",
+    "list": ["何柳琴", "李智聪"]
+  },
+  {
+    "disc": "四等奖 扫地机器人",
+    "count": 15,
+    "image": "./swiper.png"
+  }, 
+  {
+    "disc": "四等奖 沃尔玛购物卡500元",
+    "count": 15,
+    "image": "./walmart.png"
+  }
+]

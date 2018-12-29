@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script>
+      var win = nw.Window.get()
+      win.resizeTo(1024, 768)
+    </script>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html, body {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        text-align: center;
+        background: url("./bg.jpeg") no-repeat;
+        overflow: hidden;
+        background-size: 100% 100%;
+        color: white;
+      }
+      #container {
+        min-width: 1000px;
+        min-height: 700px;
+      }
+      #title {
+        font-size: 60px;
+      }
+      #count {
+        font-size: 40px;
+        margin-top: 20px;
+      }
+      #disc {
+        font-size: 40px;
+        margin-top: 30px;
+      }
+      #image {
+        margin-top: 30px;
+        max-height: 400px;
+      }
+      #list {
+        margin: 30px auto;
+        max-width: 800px;
+        
+      }
+      #list span {
+        display: inline-block;
+        width: 160px;
+        font-size: 30px;
+        margin: 30px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="title">惠信科技2019年会</div>
+      <div id="disc">奖品描述</div>
+      <div id="count">数量</div>
+      <img id="image" />
+      <div id="list"></div>
+    </div>
+    <script>
+      var fs = require('fs')
+      var steps = null
+      var step = 0
+      var names = null
+      var state = ""
+      
+      var disc = document.getElementById('disc')
+      var count = document.getElementById('count')
+      var image = document.getElementById('image')
+      var list = document.getElementById('list')
+
+      function reloadConf(func) {
+        fs.readFile('names.ini', 'utf8', function(err, data) {
+          names = data.split('\n')
+        })
+        fs.readFile('./steps.json', 'utf8', function(err, data) {
+          steps = eval(data)
+          if (func) func()
+        })
+      }
+
+      function saveConf(func) {
+        fs.writeFile('./steps.json', JSON.stringify(steps), function(err) {
+          if (err) {
+            alert(err)
+          }
+        })
+        fs.writeFile('./names.ini', names.join('\n'), function(err) {
+          if (err) {
+            alert(err)
+          }
+        })
+      }
+
+      function showPic(data) {
+        disc.innerHTML = data.disc
+        image.src = data.image
+        image.style.display = 'inline'
+        count.innerHTML = data.count + '人'
+        count.style.display = 'block'
+        list.style.display = 'none'
+        while (list.hasChildNodes()) {
+          list.removeChild(list.firstChild)
+        }
+      }
+
+      function showBlink(data) {
+        disc.innerHTML = data.disc
+        image.style.display = 'none'
+        count.style.display = 'none'
+        list.style.display = 'block'
+        var spans = []
+        for (var i = 0; i < data.count; ++i) {
+          var span = document.createElement('span')
+          list.appendChild(span)
+          spans.push(span)
+        }
+
+        function doBlink() {
+          if (state == 'showBlink') {
+            names.sort(function() {
+              return 0.5 - Math.random()
+            })
+            for (var i = 0; i < data.count; ++i) {
+              spans[i].innerHTML = names[i]
+            }
+          }
+          window.requestAnimationFrame(doBlink)
+        }
+
+        window.requestAnimationFrame(doBlink)
+      }
+
+      function showList(data) {
+        disc.innerHTML = data.disc
+        count.style.display = 'none'
+        image.style.display = 'none'
+        list.style.display = 'block'
+        while (list.hasChildNodes()) {
+          list.removeChild(list.firstChild)
+        }
+        for (var i = 0; i < data.list.length; ++i) {
+          var span = document.createElement('span')
+          span.innerHTML = data.list[i]
+          list.appendChild(span)
+        }
+      }
+
+      function nextStep() {
+        var data = steps[step]
+        if (state == "showPic") {
+          data.list = data.list || []
+          if (data.list.length > 0) {
+            state = "showList"
+            showList(data)
+          } else {
+            state = "showBlink"
+            showBlink(data)
+          }
+        } else if (state == "showBlink") {
+          if (data.list.length > 0) {
+            state = "showList"
+            showList(data)
+          }
+        } else if (state == "showList") {
+          if (step < (steps.length - 1)) {
+            ++step
+            state = ""
+            nextStep()
+          }
+        } else {
+          state = "showPic"
+          showPic(data)
+        }
+      }
+
+      function previousStep() {
+        if (step > 0) {
+          --step
+        }
+        state = ""
+        nextStep()
+      }
+
+      function drawPrize() {
+        if (state == "showBlink") {
+          var data = steps[step]
+          var luck = names.splice(0, data.count)
+          data.list = luck
+          saveConf()
+          nextStep()
+        }
+      }
+
+      document.addEventListener('keydown', function(e) {
+        e=e||window.event
+        if (e.keyCode == 56) {
+          // 8
+          reloadConf()
+        } else if (e.keyCode == 52) {
+          // 4
+          nextStep()
+        } else if (e.keyCode == 49) {
+          // 1
+          previousStep()
+        } else if (e.keyCode == 32) {
+          // 空格
+          drawPrize()
+        }
+      })
+      
+      reloadConf(nextStep)
+    </script> 
+  </bdoy>
+</html>
