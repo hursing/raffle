@@ -22,18 +22,21 @@
         overflow: hidden;
         background-size: 100% 100%;
         font-weight: bold;
+        color: #D40000;
       }
       #container {
         min-width: 1000px;
         min-height: 700px;
       }
+      #title {
+        margin-top: 80px;
+      }
       #disc {
         font-size: 40px;
-        margin-top: 280px;
-        color: #D40000;
+        margin: 10px 0;
       }
       #image {
-        margin-top: 30px;
+        margin-top: 20px;
         max-height: 280px;
         border: 1px solid #E23540FF;
         border-radius: 20px;
@@ -41,7 +44,6 @@
       #list {
         margin: 0 auto;
         max-width: 800px;
-        color: #88241FFF;
       }
       #list span {
         display: inline-block;
@@ -54,6 +56,7 @@
 
   <body>
     <div id="container">
+      <img id="title" src="./title.png" />
       <div id="disc">奖品描述</div>
       <img id="image" />
       <div id="list"></div>
