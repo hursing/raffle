@@ -29,6 +29,7 @@
         min-height: 700px;
       }
       #title {
+        font-size: 100px;
         margin-top: 80px;
       }
       #disc {
@@ -56,7 +57,7 @@
 
   <body>
     <div id="container">
-      <img id="title" src="./title.png" />
+      <div id="title">XX公司年会</div>
       <div id="disc">奖品描述</div>
       <img id="image" />
       <div id="list"></div>
@@ -66,7 +67,7 @@
       var steps = null
       var step = 0
       var names = null
-      var state = ""
+      var state = ''
       
       var disc = document.getElementById('disc')
       var image = document.getElementById('image')
@@ -147,28 +148,28 @@
 
       function nextStep() {
         var data = steps[step]
-        if (state == "showPic") {
+        if (state == 'showPic') {
           data.list = data.list || []
           if (data.list.length > 0) {
-            state = "showList"
+            state = 'showList'
             showList(data)
           } else {
-            state = "showBlink"
+            state = 'showBlink'
             showBlink(data)
           }
-        } else if (state == "showBlink") {
+        } else if (state == 'showBlink') {
           if (data.list.length > 0) {
-            state = "showList"
+            state = 'showList'
             showList(data)
           }
-        } else if (state == "showList") {
+        } else if (state == 'showList') {
           if (step < (steps.length - 1)) {
             ++step
-            state = ""
+            state = ''
             nextStep()
           }
         } else {
-          state = "showPic"
+          state = 'showPic'
           showPic(data)
         }
       }
@@ -177,12 +178,12 @@
         if (step > 0) {
           --step
         }
-        state = ""
+        state = ''
         nextStep()
       }
 
       function drawPrize() {
-        if (state == "showBlink") {
+        if (state == 'showBlink') {
           var data = steps[step]
           names.sort(function (a, b) {
             if (a[1] <= data.level && b[1] > data.level) {
