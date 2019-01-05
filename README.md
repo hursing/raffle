@@ -15,6 +15,14 @@ cd /path/to/your/app
 
 `/path/to/nw` is the binary file of NW.js. On Windows, it’s `nw.exe`; On Linux, it’s `nw`; On Mac, it’s `nwjs.app/Contents/MacOS/nwjs`.
 
+## 需求分析
+
+1. 多轮抽奖，每轮只有3个环节：展示奖品图，人名闪动，停止闪动确定中奖名单
+2. 中奖分级，例如试用期员工不能中二等奖或以上
+3. 每轮抽奖的中奖人数不同
+4. 可临时加场，可选定中奖分级，可现场输入奖品名。额外窗口输入，避免被观众看到。
+5. 本地记录每轮的奖品和中奖名单
+
 ## 按键
 
 - `f`：切换全屏
